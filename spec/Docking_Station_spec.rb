@@ -5,10 +5,9 @@ describe DockingStation do
    it { is_expected.to respond_to :release_bike }
 
    it "report bike as broken" do
-     # bicycle = Bike.new.broken?
-     subject.report_broken
-     expect(subject).to be_broken
-     # expect(subject.dock(bicycle)).to eq(["broken"])
+     bicycle = Bike.new
+     bicycle.report_broken
+     expect(subject.dock(bicycle)).to eq("broken")
    end
 
    it 'if default is not specified, constant is used' do
