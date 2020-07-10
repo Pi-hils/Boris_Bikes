@@ -4,7 +4,12 @@ require 'Docking_Station'
 describe DockingStation do
    it { is_expected.to respond_to :release_bike }
 
-
+   it "report bike as broken" do
+     # bicycle = Bike.new.broken?
+     subject.report_broken
+     expect(subject).to be_broken
+     # expect(subject.dock(bicycle)).to eq(["broken"])
+   end
 
    it 'if default is not specified, constant is used' do
      expect { 21.times { subject.dock(Bike.new) }}.to raise_error('Docking full')
@@ -15,7 +20,7 @@ describe DockingStation do
      expect { 31.times { station1.dock(Bike.new) }}.to raise_error('Docking full')
    end
 
-   #
+   #dock
    it 'can call dock method 20times' do
      DockingStation::DEFAULT_CAPACITY.times { subject.dock(Bike.new) }
      expect(subject.bikes.count).to eq DockingStation::DEFAULT_CAPACITY
